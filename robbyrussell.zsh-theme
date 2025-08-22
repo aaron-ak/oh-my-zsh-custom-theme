@@ -7,7 +7,7 @@ get_host() {
     hostname
   fi
 }
-PROMPT='%(?:%F{#00ff00}%1{➜%} :%F{#ff0000}%1{➜%} ) %F{#72C6A6}%n@$(get_host) %F{#2F3E4E}%c%f '
+PROMPT='%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[magenta]%}%n@$(get_host) %{$fg[cyan]%}%c%{$reset_color%} '
 #PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[yellow]%}%n@%m %{$fg[cyan]%}%c%{$reset_color%}"
 #PROMPT='%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[yellow]%}%n@$(scutil --get LocalHostName) %{$fg[cyan]%}%c%{$reset_color%} '
 
