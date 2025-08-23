@@ -7,7 +7,17 @@ get_host() {
     hostname
   fi
 }
-PROMPT='%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[magenta]%}%n@$(get_host) %{$fg[cyan]%}%c%{$reset_color%} '
+
+
+# Set different color for ssh sessions
+if [[ -n "$SSH_CONNECTION" ]]; then
+  PROMPT_COLOR="%{$fg[yellow]%}"   # Use yellow for SSH
+else
+  PROMPT_COLOR="%{$fg[magenta]%}"   # Use magenta for local
+fi
+
+# Use PROMPT_COLOR variable directly in the prompt
+PROMPT='%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) '${PROMPT_COLOR}'%n@$(get_host) %{$fg[cyan]%}%c%{$reset_color%} '
 #PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[yellow]%}%n@%m %{$fg[cyan]%}%c%{$reset_color%}"
 #PROMPT='%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[yellow]%}%n@$(scutil --get LocalHostName) %{$fg[cyan]%}%c%{$reset_color%} '
 
