@@ -1,6 +1,6 @@
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-curl -o ~/.oh-my-zsh/custom/themes/robbyrussell.zsh-theme https://raw.githubusercontent.com/aaron-ak/oh-my-zsh-custom-theme/refs/heads/main/robbyrussell.zsh-theme
+curl -o ~/.oh-my-zsh/custom/themes/robbyrussell-custom.zsh-theme https://raw.githubusercontent.com/aaron-ak/oh-my-zsh-custom-theme/refs/heads/main/robbyrussell.zsh-theme
 ```
 
 
@@ -32,9 +32,23 @@ mkdir -p ~/.oh-my-zsh/themes
 
 # Download custom robbyrussell theme
 echo "⬇️ Downloading custom theme..."
-curl -fsSL -o ~/.oh-my-zsh/themes/robbyrussell.zsh-theme \
+curl -fsSL -o ~/.oh-my-zsh/themes/robbyrussell-custom.zsh-theme \
     https://raw.githubusercontent.com/aaron-ak/oh-my-zsh-custom-theme/refs/heads/main/robbyrussell.zsh-theme
 
+# Update .zshrc to use the custom theme
+echo "🔧 Updating ~/.zshrc to use robbyrussell-custom theme..."
+if [ -f ~/.zshrc ]; then
+    # Replace existing ZSH_THEME line or add it if it doesn't exist
+    if grep -q "^ZSH_THEME=" ~/.zshrc; then
+        sed -i.bak 's/^ZSH_THEME=.*/ZSH_THEME="robbyrussell-custom"/' ~/.zshrc
+    else
+        echo 'ZSH_THEME="robbyrussell-custom"' >> ~/.zshrc
+    fi
+    echo "✅ Theme updated in ~/.zshrc"
+else
+    echo "⚠️ ~/.zshrc not found. Please set ZSH_THEME=\"robbyrussell-custom\" manually."
+fi
+
 echo "✅ Installation complete."
-echo "👉 Update ~/.zshrc and set ZSH_THEME=\"robbyrussell\""
+echo "👉 Restart your terminal or run 'source ~/.zshrc' to apply the theme"
 ```
