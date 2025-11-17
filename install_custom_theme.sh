@@ -42,4 +42,4 @@ else
 fi
 
 echo "✅ Installation complete."
-echo "👉 Restart your terminal or run 'source ~/.zshrc' to apply the theme"
+echo "⚠️ Change your default shell to zsh with 'chsh -s $(which zsh)' if you haven't already."
